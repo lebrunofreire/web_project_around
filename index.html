@@ -14,9 +14,11 @@
     <div class="author">
     <img class="author-image" src="./images/Avatar.png" alt="Autor">
     <div class="author-info">
-    <h2 class="author-name">Jacques Cousteau <button class="author-edit"></button>
-    </h2>
-    <p class="author-subtitle">Explorador</p>
+  <div class="author-name-wrapper">
+    <h1 id="profileName" class="author-name">Jacques Cousteau</h1>
+    <button id="openModalBtn" class="author-edit"></button>
+  </div>
+    <p class="author-subtitle" id="profileTitle">Explorador</p>
     </div>
      <button class="author-add"></button>
     </div>
@@ -57,8 +59,53 @@
     <button class="element-image-like" src="./images/Group.png"></button>
     </p>
     </div>
+<div class="modal" id="modal">
+  <div class="modal-content">
+    <button class="close-button" id="closeModalBtn">×</button>
+    <h2>Editar perfil</h2>
+    <form id="profileForm">
+      <input type="text" id="nameInput" value="Jacques Cousteau" />
+      <input type="text" id="titleInput" value="Explorador" />
+      <button type="submit">Salvar</button>
+    </form>
+  </div>
+</div>
     </div>
     <footer class="footer">© 2025 Around The U.S.</footer>
     </main>
+        <script>
+// Elementos
+const openModalBtn = document.getElementById("openModalBtn");
+const closeModalBtn = document.getElementById("closeModalBtn");
+const modal = document.getElementById("modal");
+const form = document.getElementById("profileForm");
+
+// Campos da página
+const profileName = document.getElementById("profileName");
+const profileTitle = document.getElementById("profileTitle");
+
+// Abrir modal
+openModalBtn.addEventListener("click", () => {
+  modal.style.display = "flex";
+});
+
+// Fechar modal
+closeModalBtn.addEventListener("click", () => {
+  modal.style.display = "none";
+});
+
+// Salvar alterações
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const name = document.getElementById("nameInput").value;
+  const title = document.getElementById("titleInput").value;
+
+  profileName.textContent = name;
+  profileTitle.textContent = title;
+
+  modal.style.display = "none";
+});
+
+</script>
 </body> 
 </html>
