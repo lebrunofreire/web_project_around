@@ -1,5 +1,3 @@
-<script>
-// Elementos
 const openModalBtn = document.getElementById("openModalBtn");
 const closeModalBtn = document.getElementById("closeModalBtn");
 const modal = document.getElementById("modal");
@@ -30,5 +28,3 @@ form.addEventListener("submit", (e) => {
 
   modal.style.display = "none";
 });
-
-</script>
