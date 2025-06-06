@@ -1,0 +1,84 @@
+.author{
+display: flex;
+width: 880px;
+height: 120px;
+margin: auto;
+margin-top: 40px;
+
+}
+
+
+.author-image{
+width: 120px;
+height: 120px;
+}
+
+.author-info{
+    display: flex;
+    flex-direction: column;
+    padding-left: 30px; 
+}
+
+.author-name-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px; 
+}
+
+
+.author-name{
+width: 320px;
+height: 39px;
+font-family: 'Inter';
+font-style: normal;
+font-weight: 500;
+font-size: 42px;
+line-height: 48px;
+color: #FFFFFF;
+margin: 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.author-subtitle{
+color: #FFFFFF;
+font-family: 'Inter';
+font-weight: 400;
+font-size: 18px;
+line-height: 100%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+
+}
+
+.author-edit{
+background-image: url("../images/Edit\ Button.png");
+background-color: #000000;
+background-position: center;
+width: 24px;
+height: 24px;
+border-width: 1px;
+border: 1px solid #FFFFFF;
+
+}
+
+.author-edit:hover{
+    cursor: pointer;
+}
+
+.author-add{
+background-image: url("../images/Add\ Button.png");
+background-color: #000000;
+background-position: center;
+width: 150px;
+height: 50px;
+margin-left: auto;
+border: 2px solid #FFFFFF;
+
+}
+
+.author-add:hover{
+    cursor: pointer;
+}

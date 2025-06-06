@@ -1,0 +1,12 @@
+.elements{
+width: 880px;
+height: 743px;
+border: 1.5px solid #000000;
+margin: auto;
+margin-top: 50px;
+display: grid;
+grid-template-columns: repeat(3, 200px);
+grid-template-rows: repeat(2, 150px);
+row-gap: 225px;
+column-gap: 95px;
+}

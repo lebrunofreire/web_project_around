@@ -1,0 +1,37 @@
+.element{
+width: 282px;
+height: 361px;
+background-color: #FFFFFF;
+border-radius: 10px 10px 10px 10px;
+}
+
+.element-image{
+width: 282px;
+height: 282px;
+
+}
+
+.element-image-title{
+display: flex;
+font-family: 'Inter';
+font-style: normal;
+font-weight: bold;
+font-size: 24px;
+line-height: 29px;
+color: #000000;
+margin: 25px 15px 31px 21px;
+}
+
+.element-image-like{
+background-image: url("../images/Group.png");
+background-color: #FFFFFF;
+background-repeat: no-repeat;
+border: none;
+width: 21px;
+height: 19px;
+margin-left: auto;
+}
+
+.element-image-like:hover{
+    cursor: pointer;
+}

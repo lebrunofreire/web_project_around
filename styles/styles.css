@@ -1,3 +1,4 @@
+@import url(../vendor/normalize.css);
 @import url(../blocks/page.css);
 @import url(../blocks/author.css);
 @import url(../blocks/elements.css);
@@ -14,7 +15,6 @@
 
 .page-logo{
     display: flex;
-    border: 1px solid #545454;
     margin: 28px 167px 32px 27px;
 }
 
@@ -110,7 +110,6 @@ margin: 50px 19px 36px
 
 .page-logo{
     display: flex;
-    border: 1px solid #545454;
 }
 
 .author{
