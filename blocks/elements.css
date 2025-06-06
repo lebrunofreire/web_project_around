@@ -10,3 +10,28 @@ grid-template-rows: repeat(2, 150px);
 row-gap: 225px;
 column-gap: 95px;
 }
+
+@media screen and (max-width: 1024px){
+
+.elements{
+max-width: 570px;
+height: 1100px;
+border: 1.5px solid #000000;
+display: grid;
+grid-template-columns: repeat(2, 200px);
+grid-template-rows: repeat(3, 150px);
+}
+}
+
+@media screen and (max-width: 544px){
+
+.elements{
+max-width: 282px;
+height: 2266px;
+border: 1.5px solid #000000;
+display: grid;
+grid-template-columns: repeat(1, 200px);
+grid-template-rows: repeat(6, 150px);
+}
+}
+

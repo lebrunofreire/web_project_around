@@ -5,10 +5,29 @@ background: #000000;
 
 }
 
+.page-header{
+    max-width:880px ;
+    padding-top: 45px;
+    margin: auto;
+}
+
+.page-logo{
+    margin: auto;
+}
+
+@media screen and (max-width: 1024px){
+
 .page-logo{
     display: flex;
-    padding-top: 45px;
-    padding-right: 725px;
-    margin: auto;
-    
+}
+
+@media screen and (max-width: 544px){
+
+
+.page-logo{
+    display: flex;
+    margin: 28px 167px 32px 27px;
+}
+}
+
 }

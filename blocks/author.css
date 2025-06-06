@@ -27,8 +27,7 @@ height: 120px;
 
 
 .author-name{
-width: 320px;
-height: 39px;
+max-width: 320px;
 font-family: 'Inter';
 font-style: normal;
 font-weight: 500;
@@ -42,6 +41,7 @@ margin: 0;
 }
 
 .author-subtitle{
+max-width: 320px;
 color: #FFFFFF;
 font-family: 'Inter';
 font-weight: 400;
@@ -82,3 +82,132 @@ border: 2px solid #FFFFFF;
 .author-add:hover{
     cursor: pointer;
 }
+
+@media screen and (max-width: 1024px){
+
+
+.author{
+max-width: 282px;
+max-height: 286px;
+display: flex;
+flex-direction: column;
+justify-content: center;
+row-gap: 30px;
+width: 100%;
+height: 100%;
+margin: auto;
+}
+
+.author-image{
+width: 120px;
+height: 120px;
+margin: auto;
+}
+
+.author-name{
+width: 373px;
+height: 39px;
+font-family: 'Inter';
+font-style: normal;
+font-weight: 500;
+font-size: 22px;
+line-height: 100%;
+color: #FFFFFF;
+margin: 0;
+}
+
+.author-edit{
+background-repeat: no-repeat;
+background-size: cover;
+width: 20px;
+height: 20px;
+border-width: 1px;
+border: 1px solid #FFFFFF;
+margin-left: 10px;
+}
+
+.author-subtitle{
+color: #FFFFFF;
+font-family: 'Inter';
+font-weight: 400;
+font-size: 14px;
+line-height: 100%;
+
+}
+
+.author-add{
+background-image: url("../images/Add\ Button\ MOBILE.png");
+background-color: #000000;
+background-position: center;
+width: 282px;
+margin: auto;
+border: 2px solid #FFFFFF;
+}
+}
+
+@media screen and (max-width: 544px){
+
+.author{
+max-width: 282px;
+max-height: 286px;
+display: flex;
+flex-direction: column;
+justify-content: center;
+row-gap: 30px;
+width: 100%;
+height: 100%;
+margin: auto;
+}
+
+.author-image{
+width: 120px;
+height: 120px;
+margin: auto;
+}
+
+.author-info{
+    display: flex;
+    width: 282px;
+    height: 50px;
+    margin: auto;
+}
+
+.author-name{
+width: 224px;
+height: 22px;
+font-family: 'Inter';
+font-style: normal;
+font-weight: 500;
+font-size: 22px;
+line-height: 100%;
+color: #FFFFFF;
+}
+
+.author-edit{
+background-repeat: no-repeat;
+background-size: cover;
+width: 20px;
+height: 20px;
+border-width: 1px;
+border: 1px solid #FFFFFF;
+margin-left: 10px;
+}
+
+.author-subtitle{
+color: #FFFFFF;
+font-family: 'Inter';
+font-weight: 400;
+font-size: 14px;
+line-height: 100%;
+}
+
+.author-add{
+background-image: url("../images/Add\ Button\ MOBILE.png");
+background-color: #000000;
+background-position: center;
+width: 282px;
+margin: auto;
+border: 2px solid #FFFFFF;
+}
+}
+
