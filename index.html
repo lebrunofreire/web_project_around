@@ -1,78 +1,128 @@
 <!DOCTYPE html>
 <html lang="pt">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Around The Us</title>
-    <link rel="stylesheet" href="./pages/index.css">
-</head>
-<body>
+    <link rel="stylesheet" href="./pages/index.css" />
+  </head>
+  <body>
     <main class="page">
-        <header class="page-header">
-    <img src="./images/Vector (2).png" alt="logo" class="page-logo">
-    </header>
-    <div class="author">
-    <img class="author-image" src="./images/Avatar.png" alt="Autor">
-    <div class="author-info">
-  <div class="author-name-wrapper">
-    <h1 id="profileName" class="author-name">Jacques Cousteau</h1>
-    <button id="openModalBtn" class="author-edit"></button>
-  </div>
-    <p class="author-subtitle" id="profileTitle">Explorador</p>
-    </div>
-     <button class="author-add"></button>
-    </div>
-    <div class="elements">
-    <div class="element">
-    <img class="element-image" src="./images/vale yo.png" alt="Vale">
-    <p class="element-image-title">Vale de Yosemite
-    <button class="element-image-like"></button>
-    </p>
-    </div>
+      <header class="page-header">
+        <img src="./images/Vector (2).png" alt="logo" class="page-logo" />
+      </header>
+      <div class="author">
+        <img class="author-image" src="./images/Avatar.png" alt="Autor" />
+        <div class="author-info">
+          <div class="author-name-wrapper">
+            <h1 id="profileName" class="author-name">Jacques Cousteau</h1>
+            <button id="openModalBtn" class="author-edit"></button>
+          </div>
+          <p class="author-subtitle" id="profileTitle">Explorador</p>
+        </div>
+        <button id="openPlaceModalBtn" class="author-add"></button>
+      </div>
+      <div class="elements">
         <div class="element">
-    <img class="element-image" src="./images/kirill-pershin-1404681-unsplash.png" alt="Lago">
-    <p class="element-image-title">Lago Louise
-    <button class="element-image-like"></button>
-    </p>
-    </div>
+          <img
+            id="urlInput"
+            class="element-image"
+            src="./images/vale yo.png"
+            alt="Vale"
+          />
+          <button class="element-delete-btn"></button>
+          <p class="element-image-title">
+            Vale de Yosemite
+            <button class="element-image-like"></button>
+          </p>
+        </div>
         <div class="element">
-    <img class="element-image" src="./images/kirill-pershin-1556355-unsplash.png" alt="Montanhas">
-    <p class="element-image-title">Montanhas Care...
-    <button class="element-image-like"></button>
-    </p>
-    </div>
+          <img
+            class="element-image"
+            src="./images/kirill-pershin-1404681-unsplash.png"
+            alt="Lago"
+          />
+          <button class="element-delete-btn"></button>
+          <p class="element-image-title" id="placeTitle">
+            Lago Louise
+            <button class="element-image-like"></button>
+          </p>
+        </div>
         <div class="element">
-    <img class="element-image" src="./images/kirill-pershin-1404681-unsplash (1).png" alt="Latemar">
-    <p class="element-image-title">Latemar
-    <button class="element-image-like"></button>
-    </p>
-    </div>
+          <img
+            class="element-image"
+            src="./images/kirill-pershin-1556355-unsplash.png"
+            alt="Montanhas"
+          />
+          <button class="element-delete-btn"></button>
+          <p class="element-image-title">
+            Montanhas Care...
+            <button class="element-image-like"></button>
+          </p>
+        </div>
         <div class="element">
-    <img class="element-image" src="./images/kirill-pershin-155-unsplash.png" alt="Parque">
-    <p class="element-image-title">Parque Nacional
-    <button class="element-image-like"></button>
-    </p>
-    </div>
+          <img
+            class="element-image"
+            src="./images/kirill-pershin-1404681-unsplash (1).png"
+            alt="Latemar"
+          />
+          <button class="element-delete-btn"></button>
+          <p class="element-image-title">
+            Latemar
+            <button class="element-image-like"></button>
+          </p>
+        </div>
         <div class="element">
-    <img class="element-image" src="./images/kirill-pershin-1088404-unsplash.png" alt="Lago di Braies">
-    <p class="element-image-title">Lago di Braies
-    <button class="element-image-like"></button>
-    </p>
-    </div>
-<div class="modal" id="modal">
-  <div class="modal-content">
-    <button class="close-button" id="closeModalBtn">×</button>
-    <h2>Editar perfil</h2>
-    <form id="profileForm">
-      <input type="text" id="nameInput" value="Jacques Cousteau" />
-      <input type="text" id="titleInput" value="Explorador" />
-      <button type="submit">Salvar</button>
-    </form>
-  </div>
-</div>
-    </div>
-    <footer class="footer">&copy; 2025 Around The U.S.</footer>
+          <img
+            class="element-image"
+            src="./images/kirill-pershin-155-unsplash.png"
+            alt="Parque"
+          />
+          <button class="element-delete-btn"></button>
+          <p class="element-image-title">
+            Parque Nacional
+            <button class="element-image-like"></button>
+          </p>
+        </div>
+        <div class="element">
+          <img
+            class="element-image"
+            src="./images/kirill-pershin-1088404-unsplash.png"
+            alt="Lago di Braies"
+          />
+          <button class="element-delete-btn"></button>
+          <p class="element-image-title">
+            Lago di Braies
+            <button class="element-image-like"></button>
+          </p>
+        </div>
+        <div class="modal" id="modal">
+          <div class="modal-content">
+            <button class="close-button" id="closeModalBtn">×</button>
+            <h2>Editar perfil</h2>
+            <form id="profileForm">
+              <input type="text" id="nameInput" value="Jacques Cousteau" />
+              <input type="text" id="titleInput" value="Explorador" />
+              <button type="submit">Salvar</button>
+            </form>
+          </div>
+        </div>
+        <div class="modal" id="placeModal">
+          <div class="modal-content">
+            <button class="close-button" id="closePlaceModalBtn">
+              &times;
+            </button>
+            <h2>Novo Local</h2>
+            <form id="placeForm">
+              <input type="text" id="placeTitleInput" placeholder="Title" />
+              <input type="text" id="placeImageUrl" placeholder="Image URL" />
+              <button type="submit" id="savePlaceBtn">Criar</button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <footer class="footer">&copy; 2025 Around The U.S.</footer>
     </main>
     <script src="./scripts/index.js"></script>
-</body> 
+  </body>
 </html>
