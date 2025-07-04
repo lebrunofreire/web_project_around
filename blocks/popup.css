@@ -1,39 +1,45 @@
-.popup-content {
+.image-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background-color: rgba(0, 0, 0, 0.85);
+  justify-content: center;
+  align-items: center;
+}
+
+.image-modal-wrapper {
   position: relative;
-  background-color: #fff;
-  border-radius: 10px;
-  padding: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.popup-image {
-  max-width: 100%;
-  height: auto;
-  border-radius: 10px;
+.image-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background-color: rgba(0, 0, 0, 0.85);
+  justify-content: center;
+  align-items: center;
+  padding: 20px; /* Isso evita que a imagem grude na borda da tela */
+  box-sizing: border-box;
 }
 
-/* Botão de fechar fora da imagem */
-.popup-close {
+.image-modal-close {
   position: absolute;
-  top: -15px;
-  right: -15px;
-  font-size: 24px;
-  background-color: #fff;
-  border: none;
-  border-radius: 50%;
-  width: 32px;
-  height: 32px;
+  top: -40px;
+  right: -10px;
+  font-size: 36px;
+  color: white;
   cursor: pointer;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }
 
-/* Título fora da imagem, canto inferior esquerdo */
-.popup-title {
+.image-modal-title {
+  margin-top: 12px;
   align-self: flex-start;
-  margin-top: 10px;
-  font-size: 16px;
+  font-size: 18px;
+  color: white;
   font-weight: bold;
-  color: #333;
 }

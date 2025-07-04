@@ -72,16 +72,14 @@ document.addEventListener("DOMContentLoaded", () => {
           </p>
       `;
 
-    // Adiciona evento de remover
     newCard
       .querySelector(".element-delete-btn")
       .addEventListener("click", (e) => {
         e.target.closest(".element").remove();
       });
 
-    elementsContainer.prepend(newCard); // ou appendChild para adicionar no final
+    elementsContainer.prepend(newCard);
 
-    // Fecha o modal e limpa os campos
     placeModal.style.display = "none";
     titleInput.value = "";
     imageUrlInput.value = "";
@@ -125,21 +123,20 @@ document.querySelector(".elements").addEventListener("click", (event) => {
   }
 });
 
-const elementImage = document.querySelector(".element-image");
-const popup = document.querySelector(".popup");
-const closeBtn = document.querySelector(".popup-close");
+const imageModal = document.getElementById("imageModal");
+const modalImage = document.getElementById("modalImage");
+const modalImageTitle = document.getElementById("modalImageTitle");
+const closeImageModal = document.getElementById("closeImageModal");
 
-elementImage.addEventListener("click", () => {
-  popup.classList.remove("hidden");
-});
-
-closeBtn.addEventListener("click", () => {
-  popup.classList.add("hidden");
-});
-
-// Opcional: fechar ao clicar fora da área de conteúdo
-popup.addEventListener("click", (e) => {
-  if (e.target === popup) {
-    popup.classList.add("hidden");
+document.addEventListener("click", function (e) {
+  if (e.target.classList.contains("element-image")) {
+    modalImage.src = e.target.src;
+    modalImage.alt = e.target.alt;
+    modalImageTitle.textContent = e.target.alt;
+    imageModal.style.display = "flex";
   }
+});
+
+closeImageModal.addEventListener("click", function () {
+  imageModal.style.display = "none";
 });

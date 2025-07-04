@@ -91,36 +91,41 @@
             <button class="element-image-like"></button>
           </p>
         </div>
-        <div class="modal" id="modal">
-          <div class="modal-content">
-            <button class="close-button" id="closeModalBtn">×</button>
-            <h2>Editar perfil</h2>
-            <form id="profileForm">
-              <input type="text" id="nameInput" value="Jacques Cousteau" />
-              <input type="text" id="titleInput" value="Explorador" />
-              <button class="modal-save-button" type="submit">Salvar</button>
-            </form>
-          </div>
-        </div>
-        <div class="modal" id="placeModal">
-          <div class="modal-content">
-            <button class="close-button" id="closePlaceModalBtn">
-              &times;
-            </button>
-            <h2>Novo Local</h2>
-            <form id="placeForm">
-              <input type="text" id="placeTitleInput" placeholder="Title" />
-              <input type="text" id="placeImageUrl" placeholder="Image URL" />
-              <button class="modal-save-button" type="submit" id="savePlaceBtn">
-                Criar
-              </button>
-            </form>
-          </div>
-        </div>
-      </div>
       </div>
       <footer class="footer">&copy; 2025 Around The U.S.</footer>
     </main>
+    <div class="modal" id="modal">
+      <div class="modal-content">
+        <button class="close-button" id="closeModalBtn">×</button>
+        <h2>Editar perfil</h2>
+        <form id="profileForm">
+          <input type="text" id="nameInput" value="Jacques Cousteau" />
+          <input type="text" id="titleInput" value="Explorador" />
+          <button class="modal-save-button" type="submit">Salvar</button>
+        </form>
+      </div>
+    </div>
+    <div class="modal" id="placeModal">
+      <div class="modal-content">
+        <button class="close-button" id="closePlaceModalBtn">&times;</button>
+        <h2>Novo Local</h2>
+        <form id="placeForm">
+          <input type="text" id="placeTitleInput" placeholder="Title" />
+          <input type="text" id="placeImageUrl" placeholder="Image URL" />
+          <button class="modal-save-button" type="submit" id="savePlaceBtn">
+            Criar
+          </button>
+        </form>
+      </div>
+    </div>
+    <div id="imageModal" class="image-modal">
+      <div class="image-modal-wrapper">
+        <span id="closeImageModal" class="image-modal-close">&times;</span>
+        <img id="modalImage" class="image-modal-content" />
+        <p id="modalImageTitle" class="image-modal-title"></p>
+      </div>
+    </div>
+
     <script src="./scripts/index.js"></script>
   </body>
 </html>
