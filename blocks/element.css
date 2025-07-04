@@ -36,7 +36,7 @@
 
 .element-image-title {
   display: flex;
-  font-family: "Inter";
+  font-family: "Inter", Arial, sans-serif;
   font-style: normal;
   font-weight: bold;
   font-size: 24px;

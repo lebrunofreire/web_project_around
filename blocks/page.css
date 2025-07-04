@@ -22,7 +22,7 @@
   @media screen and (max-width: 544px) {
     .page-logo {
       display: flex;
-      margin: 28px 167px 32px 27px;
+      margin: auto;
     }
   }
 }
