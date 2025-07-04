@@ -23,78 +23,16 @@
         <button id="openPlaceModalBtn" class="author-add"></button>
       </div>
       <div class="elements">
-        <div class="element">
-          <img
-            class="element-image"
-            src="./images/moved_yosemite.jpg"
-            alt="Vale"
-          />
-          <button class="element-delete-btn"></button>
-          <p class="element-image-title">
-            Vale de Yosemite
-            <button class="element-image-like"></button>
-          </p>
-        </div>
-        <div class="element">
-          <img
-            class="element-image"
-            src="./images/moved_lake-louise.jpg"
-            alt="Lago"
-          />
-          <button class="element-delete-btn"></button>
-          <p class="element-image-title" id="placeTitle">
-            Lago Louise
-            <button class="element-image-like"></button>
-          </p>
-        </div>
-        <div class="element">
-          <img
-            class="element-image"
-            src="./images/moved_bald-mountains.jpg"
-            alt="Montanhas"
-          />
-          <button class="element-delete-btn"></button>
-          <p class="element-image-title">
-            Montanhas Care...
-            <button class="element-image-like"></button>
-          </p>
-        </div>
-        <div class="element">
-          <img
-            class="element-image"
-            src="./images/moved_latemar.jpg"
-            alt="Latemar"
-          />
-          <button class="element-delete-btn"></button>
-          <p class="element-image-title">
-            Latemar
-            <button class="element-image-like"></button>
-          </p>
-        </div>
-        <div class="element">
-          <img
-            class="element-image"
-            src="./images/moved_vanoise.jpg"
-            alt="Parque"
-          />
-          <button class="element-delete-btn"></button>
-          <p class="element-image-title">
-            Parque Nacional
-            <button class="element-image-like"></button>
-          </p>
-        </div>
-        <div class="element">
-          <img
-            class="element-image"
-            src="./images/moved_lago.jpg"
-            alt="Lago di Braies"
-          />
-          <button class="element-delete-btn"></button>
-          <p class="element-image-title">
-            Lago di Braies
-            <button class="element-image-like"></button>
-          </p>
-        </div>
+        <template id="card-template">
+          <div class="element">
+            <img class="element-image" src="" alt="" />
+            <button class="element-delete-btn"></button>
+            <p class="element-image-title">
+              <span></span>
+              <button class="element-image-like"></button>
+            </p>
+          </div>
+        </template>
       </div>
       <footer class="footer">&copy; 2025 Around The U.S.</footer>
     </main>

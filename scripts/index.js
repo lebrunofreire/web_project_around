@@ -16,7 +16,7 @@ const initialCards = [
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_latemar.jpg",
   },
   {
-    name: "Parque Nacional da Vanoise ",
+    name: "Parque Nacional",
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_vanoise.jpg",
   },
   {
@@ -24,6 +24,27 @@ const initialCards = [
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_lago.jpg",
   },
 ];
+
+document.addEventListener("DOMContentLoaded", () => {
+  const elementsContainer = document.querySelector(".elements");
+  const template = document.getElementById("card-template").content;
+
+  initialCards.forEach((card) => {
+    const clone = template.cloneNode(true);
+    clone.querySelector(".element-image").src = card.link;
+    clone.querySelector(".element-image").alt = card.name;
+    clone.querySelector(".element-image-title span").textContent = card.name;
+
+    // Eventos para like e delete:
+    clone
+      .querySelector(".element-delete-btn")
+      .addEventListener("click", (e) => {
+        e.target.closest(".element").remove();
+      });
+
+    elementsContainer.appendChild(clone);
+  });
+});
 
 const openModalBtn = document.getElementById("openModalBtn");
 const closeModalBtn = document.getElementById("closeModalBtn");
