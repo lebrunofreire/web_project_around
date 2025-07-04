@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   savePlaceBtn.addEventListener("click", (event) => {
-    event.preventDefault(); // Evita o envio automático
+    event.preventDefault();
     const title = titleInput.value;
     const imageUrl = imageUrlInput.value;
 
@@ -64,14 +64,12 @@ document.addEventListener("DOMContentLoaded", () => {
     newCard.classList.add("element");
 
     newCard.innerHTML = `
-      <div class="element">
           <img class="element-image" src="${imageUrl}" alt="${title}" />
           <button class="element-delete-btn"></button>
           <p class="element-image-title">
             ${title}
             <button class="element-image-like"></button>
           </p>
-        </div>
       `;
 
     // Adiciona evento de remover
@@ -113,6 +111,7 @@ document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll(".element-delete-btn").forEach((btn) => {
     btn.addEventListener("click", (e) => {
       const card = e.target.closest(".element");
+      console.log("Removendo:", card);
       if (card) {
         card.remove();
       }
@@ -120,10 +119,27 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-document.addEventListener("DOMContentLoaded", () => {
-  document.querySelectorAll(".element-image-like").forEach((btn) => {
-    btn.addEventListener("click", () => {
-      btn.classList.toggle("liked");
-    });
-  });
+document.querySelector(".elements").addEventListener("click", (event) => {
+  if (event.target.classList.contains("element-image-like")) {
+    event.target.classList.toggle("liked");
+  }
+});
+
+const elementImage = document.querySelector(".element-image");
+const popup = document.querySelector(".popup");
+const closeBtn = document.querySelector(".popup-close");
+
+elementImage.addEventListener("click", () => {
+  popup.classList.remove("hidden");
+});
+
+closeBtn.addEventListener("click", () => {
+  popup.classList.add("hidden");
+});
+
+// Opcional: fechar ao clicar fora da área de conteúdo
+popup.addEventListener("click", (e) => {
+  if (e.target === popup) {
+    popup.classList.add("hidden");
+  }
 });

@@ -1,16 +1,16 @@
-.element{
-position: relative;
-width: 282px;
-height: 361px;
-background-color: #FFFFFF;
-border-radius: 10px 10px 10px 10px;
+.element {
+  position: relative;
+  width: 282px;
+  height: 361px;
+  background-color: #ffffff;
+  border-radius: 10px 10px 10px 10px;
 }
 
 .element-delete-btn {
-  position: absolute; 
-  top: 8px; 
+  position: absolute;
+  top: 8px;
   right: 8px;
-  background-image: url('../images/Trash.png');
+  background-image: url("../images/Trash.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: 100%;
@@ -23,38 +23,42 @@ border-radius: 10px 10px 10px 10px;
   padding: 0%;
 }
 
-
-.element-image{
-width: 282px;
-height: 282px;
-
+.element-delete-btn:hover {
+  opacity: 60%;
 }
 
-.element-image-title{
-display: flex;
-font-family: 'Inter';
-font-style: normal;
-font-weight: bold;
-font-size: 24px;
-line-height: 29px;
-color: #000000;
-margin: 25px 15px 31px 21px;
+.element-image {
+  width: 282px;
+  height: 282px;
+  border-radius: 10px;
 }
 
-.element-image-like{
-background-image: url("../images/Group.png");
-background-color: #FFFFFF;
-background-repeat: no-repeat;
-border: none;
-width: 21px;
-height: 19px;
-margin-left: auto;
+.element-image-title {
+  display: flex;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 29px;
+  color: #000000;
+  margin: 25px 15px 31px 21px;
 }
 
-.element-image-like:hover{
-    cursor: pointer;
-}   
+.element-image-like {
+  background-image: url("../images/Group.png");
+  background-color: #ffffff;
+  background-repeat: no-repeat;
+  border: none;
+  width: 21px;
+  height: 19px;
+  margin-left: auto;
+  cursor: pointer;
+}
+
+.element-image-like:hover {
+  opacity: 50%;
+}
 
 .element-image-like.liked {
-  background-image: url("../images/Union.png"); /* coração cheio */
+  background-image: url("../images/Union.png");
 }
