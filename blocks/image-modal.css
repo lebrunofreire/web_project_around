@@ -6,34 +6,34 @@
   background-color: rgba(0, 0, 0, 0.85);
   justify-content: center;
   align-items: center;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
 .image-modal-wrapper {
+  height: auto;
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.image-modal {
-  display: none;
-  position: fixed;
-  inset: 0;
-  z-index: 1000;
-  background-color: rgba(0, 0, 0, 0.85);
-  justify-content: center;
-  align-items: center;
-  padding: 20px; /* Isso evita que a imagem grude na borda da tela */
-  box-sizing: border-box;
+.image-modal-wrapper img {
+  max-width: 100%;
+  height: auto;
 }
 
 .image-modal-close {
   position: absolute;
   top: -40px;
   right: -10px;
-  font-size: 36px;
+  font-size: 40px;
   color: white;
   cursor: pointer;
+}
+
+.image-modal-close:hover {
+  opacity: 60%;
 }
 
 .image-modal-title {
@@ -42,4 +42,19 @@
   font-size: 18px;
   color: white;
   font-weight: bold;
+}
+
+@media screen and (max-width: 544px) {
+  .image-modal {
+    width: 100%; /* ocupa a largura total da tela */
+    height: auto; /* se adapta ao conteúdo */
+    padding: 10px; /* reduz o espaçamento */
+  }
+
+  .image-modal-wrapper {
+    max-width: 100%;
+    max-height: none;
+    flex-direction: column;
+    gap: 10px; /* espaçamento entre itens, se tiver vários */
+  }
 }
