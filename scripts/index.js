@@ -35,7 +35,6 @@ document.addEventListener("DOMContentLoaded", () => {
     clone.querySelector(".element-image").alt = card.name;
     clone.querySelector(".element-image-title span").textContent = card.name;
 
-    // Eventos para like e delete:
     clone
       .querySelector(".element-delete-btn")
       .addEventListener("click", (e) => {
@@ -160,4 +159,57 @@ document.addEventListener("click", function (e) {
 
 closeImageModal.addEventListener("click", function () {
   imageModal.style.display = "none";
+});
+
+const title = document.querySelector("title");
+const input = document.querySelector("input");
+const button = document.querySelector("button");
+const forms = document.forms;
+
+Array.from(document.forms).forEach((form) => {
+  const fields = form.querySelectorAll("input, textarea, select");
+  const submits = form.querySelectorAll(
+    'button[type="submit"], input[type="submit"]'
+  );
+
+  const updateFieldClasses = (field) => {
+    if (field.validity.valid) {
+      field.classList.add("valid");
+      field.classList.remove("invalid");
+      button.setAttribute("disabled", true);
+    } else {
+      field.classList.add("invalid");
+      field.classList.remove("valid");
+      button.removeAttribute("disabled");
+    }
+  };
+
+  const updateSubmitState = () => {
+    const isValid = form.checkValidity();
+    submits.forEach((btn) => {
+      btn.disabled = !isValid;
+    });
+  };
+
+  fields.forEach((field) => {
+    field.addEventListener("input", () => {
+      updateFieldClasses(field);
+      updateSubmitState();
+    });
+
+    field.addEventListener("blur", () => {
+      field.reportValidity();
+      updateSubmitState();
+    });
+  });
+
+  fields.forEach(updateFieldClasses);
+  updateSubmitState();
+
+  form.addEventListener("submit", (e) => {
+    if (!form.checkValidity()) {
+      e.preventDefault();
+      form.reportValidity();
+    }
+  });
 });

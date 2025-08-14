@@ -41,8 +41,22 @@
         <button class="close-button" id="closeModalBtn">×</button>
         <h2>Editar perfil</h2>
         <form id="profileForm">
-          <input type="text" id="nameInput" value="Jacques Cousteau" />
-          <input type="text" id="titleInput" value="Explorador" />
+          <input
+            type="text"
+            id="nameInput"
+            value="Jacques Cousteau"
+            minlength="2"
+            maxlength="40"
+            required
+          />
+          <input
+            type="text"
+            id="titleInput"
+            value="Explorador"
+            minlength="2"
+            maxlength="200"
+            required
+          />
           <button class="modal-save-button" type="submit">Salvar</button>
         </form>
       </div>
@@ -52,8 +66,20 @@
         <button class="close-button" id="closePlaceModalBtn">&times;</button>
         <h2>Novo Local</h2>
         <form id="placeForm">
-          <input type="text" id="placeTitleInput" placeholder="Title" />
-          <input type="text" id="placeImageUrl" placeholder="Image URL" />
+          <input
+            type="text"
+            id="placeTitleInput"
+            placeholder="Title"
+            minlength="2"
+            maxlength="30"
+            required
+          />
+          <input
+            type="url"
+            id="placeImageUrl"
+            placeholder="Image URL"
+            required
+          />
           <button class="modal-save-button" type="submit" id="savePlaceBtn">
             Criar
           </button>
