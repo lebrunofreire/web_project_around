@@ -49,6 +49,7 @@
             maxlength="40"
             required
           />
+          <span id="errorMessage" style="color: red; font-size: 0.9rem"></span>
           <input
             type="text"
             id="titleInput"
@@ -57,6 +58,7 @@
             maxlength="200"
             required
           />
+          <span id="errorMessage" style="color: red; font-size: 0.9rem"></span>
           <button class="modal-save-button" type="submit">Salvar</button>
         </form>
       </div>
@@ -74,12 +76,14 @@
             maxlength="30"
             required
           />
+          <span id="errorMessage" style="color: red; font-size: 0.9rem"></span>
           <input
             type="url"
             id="placeImageUrl"
             placeholder="Image URL"
             required
           />
+          <span id="errorMessage" style="color: red; font-size: 0.9rem"></span>
           <button class="modal-save-button" type="submit" id="savePlaceBtn">
             Criar
           </button>
@@ -94,5 +98,6 @@
       </div>
     </div>
     <script src="./scripts/index.js"></script>
+    <script src="./scripts/validade.js"></script>
   </body>
 </html>

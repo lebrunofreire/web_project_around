@@ -16,9 +16,9 @@ input.invalid {
   border-bottom: 2px solid red;
 }
 
-button[disabled],
-input[type="submit"][disabled] {
-  opacity: 0.6;
+button[type="submit"]:disabled {
+  background-color: #6c757d;
+  color: #fff;
   cursor: not-allowed;
-  filter: grayscale(25%);
+  opacity: 0.6;
 }
