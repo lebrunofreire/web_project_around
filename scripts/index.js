@@ -189,3 +189,36 @@ document.addEventListener("keydown", function (event) {
     }
   }
 });
+
+// Seleciona o modal
+const placeModal = document.getElementById("placeModal");
+
+// Funções utilitárias
+function isVisible(el) {
+  // Mais robusto que checar style.display diretamente
+  return window.getComputedStyle(el).display !== "none";
+}
+
+function closePlaceModal() {
+  placeModal.style.display = "none";
+}
+
+function openPlaceModal(display = "flex") {
+  placeModal.style.display = display; // "flex" ou "block", conforme seu layout
+}
+
+// Fechar ao clicar fora do conteúdo do modal
+if (placeModal) {
+  placeModal.addEventListener("click", (event) => {
+    if (event.target === placeModal) {
+      closePlaceModal();
+    }
+  });
+
+  // Fechar ao apertar ESC (somente se o modal estiver visível)
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && isVisible(placeModal)) {
+      closePlaceModal();
+    }
+  });
+}
