@@ -3,7 +3,6 @@ function enableValidation(form) {
     'button[type="submit"], input[type="submit"]'
   );
 
-  // Mantida conforme solicitado
   const errorMessageElement = form.querySelector(".error-Message");
 
   const fieldsSelector = "input, textarea, select";
@@ -15,9 +14,11 @@ function enableValidation(form) {
   };
 
   const updateFieldError = (field) => {
-    const errorEl = field.nextElementSibling;
-    if (errorEl && errorEl.classList.contains("error-Message")) {
-      errorEl.textContent = field.validity.valid ? "" : field.validationMessage;
+    const errorElement = field.nextElementSibling;
+    if (errorElement && errorElement.classList.contains("error-Message")) {
+      errorElement.textContent = field.validity.valid
+        ? ""
+        : field.validationMessage;
     }
   };
 
@@ -27,7 +28,6 @@ function enableValidation(form) {
       btn.disabled = !isValid;
     });
 
-    // Essa linha mantém a compatibilidade se você usar um erro "geral" no form
     const firstInvalid = form.querySelector(`${fieldsSelector}:invalid`);
     if (errorMessageElement) {
       errorMessageElement.textContent = firstInvalid
@@ -57,7 +57,7 @@ function enableValidation(form) {
       e.preventDefault();
       form.reportValidity();
     }
-    // Atualiza todos os campos no submit
+
     fields.forEach((field) => {
       updateFieldClasses(field);
       updateFieldError(field);
@@ -69,7 +69,6 @@ function enableValidation(form) {
   form.addEventListener("blur", onBlur, true);
   form.addEventListener("submit", onSubmit);
 
-  // Estado inicial
   fields.forEach((field) => {
     updateFieldClasses(field);
     updateFieldError(field);
@@ -83,5 +82,4 @@ function enableValidation(form) {
   };
 }
 
-// Ativar para todos os formulários
 const disableFns = Array.from(document.forms).map(enableValidation);

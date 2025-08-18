@@ -26,7 +26,6 @@ const initialCards = [
   },
 ];
 
-// ---------- Função para criar cards ----------
 function criarCard(titulo, imagemURL) {
   const card = document.createElement("div");
   card.classList.add("element");
@@ -55,16 +54,13 @@ function criarCard(titulo, imagemURL) {
   return card;
 }
 
-// ---------- Lógica principal ----------
 document.addEventListener("DOMContentLoaded", () => {
   const elementsContainer = document.querySelector(".elements");
 
-  // Renderizar cards iniciais
   initialCards.forEach((c) =>
     elementsContainer.appendChild(criarCard(c.name, c.link))
   );
 
-  // Modal de perfil
   const modal = document.getElementById("modal");
   const openModalBtn = document.getElementById("openModalBtn");
   const closeModalBtn = document.getElementById("closeModalBtn");
@@ -82,7 +78,6 @@ document.addEventListener("DOMContentLoaded", () => {
     modal.style.display = "none";
   });
 
-  // Modal de novo lugar
   const placeModal = document.getElementById("placeModal");
   const openPlaceModalBtn = document.getElementById("openPlaceModalBtn");
   const closePlaceModalBtn = document.getElementById("closePlaceModalBtn");
@@ -114,14 +109,12 @@ document.addEventListener("DOMContentLoaded", () => {
     imageUrlInput.value = "";
   });
 
-  // Like nos cards (delegação de evento)
   elementsContainer.addEventListener("click", (event) => {
     if (event.target.classList.contains("element-image-like")) {
       event.target.classList.toggle("liked");
     }
   });
 
-  // Modal de imagem
   const imageModal = document.getElementById("imageModal");
   const modalImage = document.getElementById("modalImage");
   const modalImageTitle = document.getElementById("modalImageTitle");
@@ -141,7 +134,6 @@ document.addEventListener("DOMContentLoaded", () => {
     () => (imageModal.style.display = "none")
   );
 
-  // Fechar modais clicando fora
   [modal, imageModal, placeModal].forEach((m) => {
     if (m) {
       m.addEventListener("click", (e) => {
@@ -150,7 +142,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Fechar modais com ESC
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape") {
       [modal, imageModal, placeModal].forEach((m) => {
