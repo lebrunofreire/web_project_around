@@ -1,4 +1,3 @@
-// ---------- Dados iniciais ----------
 const initialCards = [
   {
     name: "Vale de Yosemite",
@@ -68,16 +67,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const profileTitle = document.getElementById("profileTitle");
   const profileForm = document.getElementById("profileForm");
 
-  openModalBtn.addEventListener("click", () => (modal.style.display = "flex"));
-  closeModalBtn.addEventListener("click", () => (modal.style.display = "none"));
-
-  profileForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-    profileName.textContent = document.getElementById("nameInput").value;
-    profileTitle.textContent = document.getElementById("titleInput").value;
-    modal.style.display = "none";
-  });
-
   const placeModal = document.getElementById("placeModal");
   const openPlaceModalBtn = document.getElementById("openPlaceModalBtn");
   const closePlaceModalBtn = document.getElementById("closePlaceModalBtn");
@@ -85,13 +74,58 @@ document.addEventListener("DOMContentLoaded", () => {
   const titleInput = document.getElementById("placeTitleInput");
   const imageUrlInput = document.getElementById("placeImageUrl");
 
-  openPlaceModalBtn.addEventListener(
-    "click",
-    () => (placeModal.style.display = "flex")
-  );
+  const imageModal = document.getElementById("imageModal");
+  const modalImage = document.getElementById("modalImage");
+  const modalImageTitle = document.getElementById("modalImageTitle");
+  const closeImageModal = document.getElementById("closeImageModal");
+
+  const isOpen = (m) => m && window.getComputedStyle(m).display !== "none";
+  const modalsList = () => [modal, imageModal, placeModal];
+
+  function handleEscKey(event) {
+    if (event.key !== "Escape") return;
+    modalsList().forEach((m) => {
+      if (isOpen(m)) closePopup(m);
+    });
+  }
+
+  function ensureEscListener() {
+    document.addEventListener("keydown", handleEscKey);
+  }
+
+  function maybeRemoveEscListener() {
+    const algumAberto = modalsList().some(isOpen);
+    if (!algumAberto) {
+      document.removeEventListener("keydown", handleEscKey);
+    }
+  }
+
+  function openPopup(popup) {
+    if (!popup) return;
+    popup.style.display = "flex";
+    ensureEscListener();
+  }
+
+  function closePopup(popup) {
+    if (!popup) return;
+    popup.style.display = "none";
+    maybeRemoveEscListener();
+  }
+
+  openModalBtn.addEventListener("click", () => openPopup(modal));
+  closeModalBtn.addEventListener("click", () => closePopup(modal));
+
+  profileForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    profileName.textContent = document.getElementById("nameInput").value;
+    profileTitle.textContent = document.getElementById("titleInput").value;
+    closePopup(modal);
+  });
+
+  openPlaceModalBtn.addEventListener("click", () => openPopup(placeModal));
 
   closePlaceModalBtn.addEventListener("click", () => {
-    placeModal.style.display = "none";
+    closePopup(placeModal);
     titleInput.value = "";
     imageUrlInput.value = "";
   });
@@ -104,7 +138,7 @@ document.addEventListener("DOMContentLoaded", () => {
     elementsContainer.prepend(
       criarCard(titleInput.value.trim(), imageUrlInput.value.trim())
     );
-    placeModal.style.display = "none";
+    closePopup(placeModal);
     titleInput.value = "";
     imageUrlInput.value = "";
   });
@@ -115,40 +149,21 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  const imageModal = document.getElementById("imageModal");
-  const modalImage = document.getElementById("modalImage");
-  const modalImageTitle = document.getElementById("modalImageTitle");
-  const closeImageModal = document.getElementById("closeImageModal");
-
   elementsContainer.addEventListener("click", (e) => {
     if (e.target.classList.contains("element-image")) {
       modalImage.src = e.target.src;
       modalImage.alt = e.target.alt;
       modalImageTitle.textContent = e.target.alt;
-      imageModal.style.display = "flex";
+      openPopup(imageModal);
     }
   });
 
-  closeImageModal.addEventListener(
-    "click",
-    () => (imageModal.style.display = "none")
-  );
+  closeImageModal.addEventListener("click", () => closePopup(imageModal));
 
-  [modal, imageModal, placeModal].forEach((m) => {
-    if (m) {
-      m.addEventListener("click", (e) => {
-        if (e.target === m) m.style.display = "none";
-      });
-    }
-  });
-
-  document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") {
-      [modal, imageModal, placeModal].forEach((m) => {
-        if (m && window.getComputedStyle(m).display !== "none") {
-          m.style.display = "none";
-        }
-      });
-    }
+  modalsList().forEach((m) => {
+    if (!m) return;
+    m.addEventListener("click", (e) => {
+      if (e.target === m) closePopup(m);
+    });
   });
 });
