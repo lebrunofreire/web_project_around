@@ -1,3 +1,4 @@
+// ---------- Dados iniciais ----------
 const initialCards = [
   {
     name: "Vale de Yosemite",
@@ -25,47 +26,76 @@ const initialCards = [
   },
 ];
 
+// ---------- Função para criar cards ----------
+function criarCard(titulo, imagemURL) {
+  const card = document.createElement("div");
+  card.classList.add("element");
+
+  const img = document.createElement("img");
+  img.classList.add("element-image");
+  img.src = imagemURL;
+  img.alt = titulo;
+
+  const deleteBtn = document.createElement("button");
+  deleteBtn.classList.add("element-delete-btn");
+  deleteBtn.addEventListener("click", () => card.remove());
+
+  const titleP = document.createElement("p");
+  titleP.classList.add("element-image-title");
+  titleP.textContent = titulo;
+
+  const likeBtn = document.createElement("button");
+  likeBtn.classList.add("element-image-like");
+
+  titleP.appendChild(likeBtn);
+  card.appendChild(img);
+  card.appendChild(deleteBtn);
+  card.appendChild(titleP);
+
+  return card;
+}
+
+// ---------- Lógica principal ----------
 document.addEventListener("DOMContentLoaded", () => {
   const elementsContainer = document.querySelector(".elements");
-  const template = document.getElementById("card-template").content;
 
-  initialCards.forEach((card) => {
-    const clone = template.cloneNode(true);
-    clone.querySelector(".element-image").src = card.link;
-    clone.querySelector(".element-image").alt = card.name;
-    clone.querySelector(".element-image-title span").textContent = card.name;
+  // Renderizar cards iniciais
+  initialCards.forEach((c) =>
+    elementsContainer.appendChild(criarCard(c.name, c.link))
+  );
 
-    clone
-      .querySelector(".element-delete-btn")
-      .addEventListener("click", (e) => {
-        e.target.closest(".element").remove();
-      });
+  // Modal de perfil
+  const modal = document.getElementById("modal");
+  const openModalBtn = document.getElementById("openModalBtn");
+  const closeModalBtn = document.getElementById("closeModalBtn");
+  const profileName = document.getElementById("profileName");
+  const profileTitle = document.getElementById("profileTitle");
+  const profileForm = document.getElementById("profileForm");
 
-    elementsContainer.appendChild(clone);
+  openModalBtn.addEventListener("click", () => (modal.style.display = "flex"));
+  closeModalBtn.addEventListener("click", () => (modal.style.display = "none"));
+
+  profileForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    profileName.textContent = document.getElementById("nameInput").value;
+    profileTitle.textContent = document.getElementById("titleInput").value;
+    modal.style.display = "none";
   });
-});
 
-const openModalBtn = document.getElementById("openModalBtn");
-const closeModalBtn = document.getElementById("closeModalBtn");
-const modal = document.getElementById("modal");
-const form = document.getElementById("profileForm", "placeForm");
-const profileName = document.getElementById("profileName");
-const profileTitle = document.getElementById("profileTitle");
-
-document.addEventListener("DOMContentLoaded", () => {
-  const openModalBtn = document.getElementById("openPlaceModalBtn");
-  const closeModalBtn = document.getElementById("closePlaceModalBtn");
+  // Modal de novo lugar
   const placeModal = document.getElementById("placeModal");
+  const openPlaceModalBtn = document.getElementById("openPlaceModalBtn");
+  const closePlaceModalBtn = document.getElementById("closePlaceModalBtn");
   const savePlaceBtn = document.getElementById("savePlaceBtn");
   const titleInput = document.getElementById("placeTitleInput");
   const imageUrlInput = document.getElementById("placeImageUrl");
-  const elementsContainer = document.querySelector(".elements");
 
-  openModalBtn.addEventListener("click", () => {
-    placeModal.style.display = "flex";
-  });
+  openPlaceModalBtn.addEventListener(
+    "click",
+    () => (placeModal.style.display = "flex")
+  );
 
-  closeModalBtn.addEventListener("click", () => {
+  closePlaceModalBtn.addEventListener("click", () => {
     placeModal.style.display = "none";
     titleInput.value = "";
     imageUrlInput.value = "";
@@ -73,152 +103,61 @@ document.addEventListener("DOMContentLoaded", () => {
 
   savePlaceBtn.addEventListener("click", (event) => {
     event.preventDefault();
-    const title = titleInput.value;
-    const imageUrl = imageUrlInput.value;
-
-    if (!title || !imageUrl) {
+    if (!titleInput.value.trim() || !imageUrlInput.value.trim()) {
       return alert("Por favor, preencha todos os campos.");
     }
-
-    const newCard = document.createElement("div");
-    newCard.classList.add("element");
-
-    newCard.innerHTML = `
-          <img class="element-image" src="${imageUrl}" alt="${title}" />
-          <button class="element-delete-btn"></button>
-          <p class="element-image-title">
-            ${title}
-            <button class="element-image-like"></button>
-          </p>
-      `;
-
-    newCard
-      .querySelector(".element-delete-btn")
-      .addEventListener("click", (e) => {
-        e.target.closest(".element").remove();
-      });
-
-    elementsContainer.prepend(newCard);
-
+    elementsContainer.prepend(
+      criarCard(titleInput.value.trim(), imageUrlInput.value.trim())
+    );
     placeModal.style.display = "none";
     titleInput.value = "";
     imageUrlInput.value = "";
   });
-});
 
-openModalBtn.addEventListener("click", () => {
-  modal.style.display = "flex";
-});
-
-closeModalBtn.addEventListener("click", () => {
-  modal.style.display = "none";
-});
-
-form.addEventListener("submit", (e) => {
-  e.preventDefault();
-  const name = document.getElementById("nameInput").value;
-  const title = document.getElementById("titleInput").value;
-
-  profileName.textContent = name;
-  profileTitle.textContent = title;
-
-  modal.style.display = "none";
-});
-
-document.addEventListener("DOMContentLoaded", () => {
-  document.querySelectorAll(".element-delete-btn").forEach((btn) => {
-    btn.addEventListener("click", (e) => {
-      const card = e.target.closest(".element");
-      console.log("Removendo:", card);
-      if (card) {
-        card.remove();
-      }
-    });
-  });
-});
-
-document.querySelector(".elements").addEventListener("click", (event) => {
-  if (event.target.classList.contains("element-image-like")) {
-    event.target.classList.toggle("liked");
-  }
-});
-
-const imageModal = document.getElementById("imageModal");
-const modalImage = document.getElementById("modalImage");
-const modalImageTitle = document.getElementById("modalImageTitle");
-const closeImageModal = document.getElementById("closeImageModal");
-
-document.addEventListener("click", function (e) {
-  if (e.target.classList.contains("element-image")) {
-    modalImage.src = e.target.src;
-    modalImage.alt = e.target.alt;
-    modalImageTitle.textContent = e.target.alt;
-    imageModal.style.display = "flex";
-  }
-});
-
-closeImageModal.addEventListener("click", function () {
-  imageModal.style.display = "none";
-});
-
-modal.addEventListener("click", function (event) {
-  if (event.target === modal) {
-    modal.style.display = "none";
-  }
-});
-
-imageModal.addEventListener("click", function (event) {
-  if (event.target === imageModal) {
-    imageModal.style.display = "none";
-  }
-});
-
-document.addEventListener("keydown", function (event) {
-  if (event.key === "Escape") {
-    if (
-      imageModal.style.display === "flex" ||
-      imageModal.style.display === "block"
-    ) {
-      imageModal.style.display = "none";
-    }
-    if (
-      modal &&
-      (modal.style.display === "flex" || modal.style.display === "block")
-    ) {
-      modal.style.display = "none";
-    }
-  }
-});
-
-// Seleciona o modal
-const placeModal = document.getElementById("placeModal");
-
-// Funções utilitárias
-function isVisible(el) {
-  // Mais robusto que checar style.display diretamente
-  return window.getComputedStyle(el).display !== "none";
-}
-
-function closePlaceModal() {
-  placeModal.style.display = "none";
-}
-
-function openPlaceModal(display = "flex") {
-  placeModal.style.display = display; // "flex" ou "block", conforme seu layout
-}
-
-// Fechar ao clicar fora do conteúdo do modal
-if (placeModal) {
-  placeModal.addEventListener("click", (event) => {
-    if (event.target === placeModal) {
-      closePlaceModal();
+  // Like nos cards (delegação de evento)
+  elementsContainer.addEventListener("click", (event) => {
+    if (event.target.classList.contains("element-image-like")) {
+      event.target.classList.toggle("liked");
     }
   });
 
-  // Fechar ao apertar ESC (somente se o modal estiver visível)
+  // Modal de imagem
+  const imageModal = document.getElementById("imageModal");
+  const modalImage = document.getElementById("modalImage");
+  const modalImageTitle = document.getElementById("modalImageTitle");
+  const closeImageModal = document.getElementById("closeImageModal");
+
+  elementsContainer.addEventListener("click", (e) => {
+    if (e.target.classList.contains("element-image")) {
+      modalImage.src = e.target.src;
+      modalImage.alt = e.target.alt;
+      modalImageTitle.textContent = e.target.alt;
+      imageModal.style.display = "flex";
+    }
+  });
+
+  closeImageModal.addEventListener(
+    "click",
+    () => (imageModal.style.display = "none")
+  );
+
+  // Fechar modais clicando fora
+  [modal, imageModal, placeModal].forEach((m) => {
+    if (m) {
+      m.addEventListener("click", (e) => {
+        if (e.target === m) m.style.display = "none";
+      });
+    }
+  });
+
+  // Fechar modais com ESC
   document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape" && isVisible(placeModal)) {
-      closePlaceModal();
+    if (event.key === "Escape") {
+      [modal, imageModal, placeModal].forEach((m) => {
+        if (m && window.getComputedStyle(m).display !== "none") {
+          m.style.display = "none";
+        }
+      });
     }
   });
-}
+});
