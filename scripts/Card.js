@@ -1,4 +1,5 @@
-// scripts/Card.js
+import { openPopup } from "./utils.js";
+
 export class Card {
   constructor({ name, link }, templateSelector) {
     this._name = name;
@@ -36,7 +37,7 @@ export class Card {
         modalImage.alt = this._name;
         modalImageTitle.textContent = this._name;
 
-        imageModal.style.display = "flex";
+        openPopup(imageModal); // ✅ Agora o ESC funciona!
       });
   }
 
