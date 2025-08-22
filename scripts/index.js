@@ -1,3 +1,5 @@
+import { Card } from "./Card.js";
+
 const initialCards = [
   {
     name: "Vale de Yosemite",
@@ -25,41 +27,16 @@ const initialCards = [
   },
 ];
 
-function criarCard(titulo, imagemURL) {
-  const card = document.createElement("div");
-  card.classList.add("element");
+const elementsContainer = document.querySelector(".elements");
 
-  const img = document.createElement("img");
-  img.classList.add("element-image");
-  img.src = imagemURL;
-  img.alt = titulo;
-
-  const deleteBtn = document.createElement("button");
-  deleteBtn.classList.add("element-delete-btn");
-  deleteBtn.addEventListener("click", () => card.remove());
-
-  const titleP = document.createElement("p");
-  titleP.classList.add("element-image-title");
-  titleP.textContent = titulo;
-
-  const likeBtn = document.createElement("button");
-  likeBtn.classList.add("element-image-like");
-
-  titleP.appendChild(likeBtn);
-  card.appendChild(img);
-  card.appendChild(deleteBtn);
-  card.appendChild(titleP);
-
-  return card;
-}
+initialCards.forEach((data) => {
+  const card = new Card(data, "#card-template");
+  const cardElement = card.generateCard();
+  elementsContainer.appendChild(cardElement);
+});
 
 document.addEventListener("DOMContentLoaded", () => {
   const elementsContainer = document.querySelector(".elements");
-
-  initialCards.forEach((c) =>
-    elementsContainer.appendChild(criarCard(c.name, c.link))
-  );
-
   const modal = document.getElementById("modal");
   const openModalBtn = document.getElementById("openModalBtn");
   const closeModalBtn = document.getElementById("closeModalBtn");
@@ -141,21 +118,6 @@ document.addEventListener("DOMContentLoaded", () => {
     closePopup(placeModal);
     titleInput.value = "";
     imageUrlInput.value = "";
-  });
-
-  elementsContainer.addEventListener("click", (event) => {
-    if (event.target.classList.contains("element-image-like")) {
-      event.target.classList.toggle("liked");
-    }
-  });
-
-  elementsContainer.addEventListener("click", (e) => {
-    if (e.target.classList.contains("element-image")) {
-      modalImage.src = e.target.src;
-      modalImage.alt = e.target.alt;
-      modalImageTitle.textContent = e.target.alt;
-      openPopup(imageModal);
-    }
   });
 
   closeImageModal.addEventListener("click", () => closePopup(imageModal));
