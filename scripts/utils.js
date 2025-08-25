@@ -1,4 +1,3 @@
-// Seleciona todos os modais visíveis
 function handleEscKey(event) {
   function handleEscKey(event) {
     console.log("ESC pressionado");

@@ -1,0 +1,19 @@
+{
+  "name": "web_project_around",
+  "version": "0.0.1",
+  "description": "Educational platform",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lebrunofreire/web_project_around.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lebrunofreire/web_project_around/issues"
+  },
+  "homepage": "https://github.com/lebrunofreire/web_project_around#readme"
+}

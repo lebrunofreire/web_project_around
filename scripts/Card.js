@@ -37,7 +37,7 @@ export class Card {
         modalImage.alt = this._name;
         modalImageTitle.textContent = this._name;
 
-        openPopup(imageModal); // ✅ Agora o ESC funciona!
+        openPopup(imageModal);
       });
   }
 
