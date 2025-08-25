@@ -26,3 +26,20 @@ button[type="submit"]:disabled {
 .error-Message {
   color: red;
 }
+
+/* Estado base: oculto */
+.popup {
+  display: none;
+}
+
+/* Quando aberto pela classe JS */
+.popup.popup_opened {
+  display: flex; /* ou block, conforme seu layout */
+}
+
+/* Exemplo comum de overlay centralizado */
+.popup.modal,
+.popup.image-modal {
+  align-items: center;
+  justify-content: center;
+}

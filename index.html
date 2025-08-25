@@ -11,6 +11,7 @@
       <header class="page-header">
         <img src="./images/Vector.png" alt="logo" class="page-logo" />
       </header>
+
       <div class="author">
         <img class="author-image" src="./images/Avatar.png" alt="Autor" />
         <div class="author-info">
@@ -22,6 +23,7 @@
         </div>
         <button id="openPlaceModalBtn" class="author-add"></button>
       </div>
+
       <div class="elements">
         <template id="card-template">
           <div class="element">
@@ -34,16 +36,20 @@
           </div>
         </template>
       </div>
+
       <footer class="footer">&copy; 2025 Around The U.S.</footer>
     </main>
-    <div class="modal" id="modal">
+
+    <!-- Popup Editar Perfil -->
+    <div class="popup modal" id="modal">
       <div class="modal-content">
-        <button class="close-button" id="closeModalBtn">×</button>
+        <button class="popup__close close-button" id="closeModalBtn">×</button>
         <h2>Editar perfil</h2>
         <form id="profileForm">
           <input
             type="text"
             id="nameInput"
+            name="nameInput"
             value="Jacques Cousteau"
             minlength="2"
             maxlength="40"
@@ -53,6 +59,7 @@
           <input
             type="text"
             id="titleInput"
+            name="titleInput"
             value="Explorador"
             minlength="2"
             maxlength="200"
@@ -63,14 +70,19 @@
         </form>
       </div>
     </div>
-    <div class="modal" id="placeModal">
+
+    <!-- Popup Novo Local -->
+    <div class="popup modal" id="placeModal">
       <div class="modal-content">
-        <button class="close-button" id="closePlaceModalBtn">&times;</button>
+        <button class="popup__close close-button" id="closePlaceModalBtn">
+          &times;
+        </button>
         <h2>Novo Local</h2>
         <form id="placeForm">
           <input
             type="text"
             id="placeTitleInput"
+            name="placeTitleInput"
             placeholder="Title"
             minlength="2"
             maxlength="30"
@@ -80,6 +92,7 @@
           <input
             type="url"
             id="placeImageUrl"
+            name="placeImageUrl"
             placeholder="Image URL"
             required
           />
@@ -90,17 +103,19 @@
         </form>
       </div>
     </div>
-    <div id="imageModal" class="image-modal">
+
+    <!-- Popup de Imagem -->
+    <div id="imageModal" class="popup image-modal">
       <div class="image-modal-wrapper">
-        <span id="closeImageModal" class="image-modal-close">&times;</span>
+        <span id="closeImageModal" class="popup__close image-modal-close"
+          >&times;</span
+        >
         <img src="" alt="" id="modalImage" class="image-modal-content" />
         <p id="modalImageTitle" class="image-modal-title"></p>
       </div>
     </div>
+
+    <!-- Apenas o index.js é importado, ele chama o resto -->
     <script type="module" src="./pages/index.js"></script>
-    <script type="module" src="./scripts/validate.js"></script>
-    <script type="module" src="./scripts/Card.js"></script>
-    <script type="module" src="./scripts/FormValidator.js"></script>
-    <script type="module" src="./scripts/utils.js"></script>
   </body>
 </html>
