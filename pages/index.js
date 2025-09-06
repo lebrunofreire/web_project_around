@@ -5,7 +5,6 @@ import { PopupWithImage } from "../scripts/PopupWithImage.js";
 import { PopupWithForm } from "../scripts/PopupWithForm.js";
 import { UserInfo } from "../scripts/UserInfo.js";
 
-// Dados iniciais
 const initialCards = [
   {
     name: "Vale de Yosemite",
@@ -33,11 +32,13 @@ const initialCards = [
   },
 ];
 
-// ---------- Instâncias principais ----------
+
 const userInfo = new UserInfo({
   nameSelector: "#profileName",
   jobSelector: "#profileTitle",
+  avatarSelector: ".author-image"
 });
+
 
 const popupWithImage = new PopupWithImage("#imageModal");
 popupWithImage.setEventListeners();
@@ -62,6 +63,26 @@ const cardSection = new Section(
 
 cardSection.renderItems();
 
+// Instância do pop-up de avatar
+const popupEditAvatar = new PopupWithForm("#avatarModal", (formData) => {
+  api.updateAvatar(formData.avatarUrlInput)
+    .then((res) => {
+      userInfo.setAvatar(res.avatar);
+      popupEditAvatar.close();
+    })
+    .catch((err) => console.error("Erro ao atualizar avatar:", err));
+});
+popupEditAvatar.setEventListeners();
+
+// Evento de clique no botão de lápis
+document
+  .querySelector(".author-avatar-edit-button")
+  .addEventListener("click", () => {
+    popupEditAvatar.open();
+  });
+
+
+
 const popupEditProfile = new PopupWithForm("#modal", (formData) => {
   userInfo.setUserInfo({
     name: formData.nameInput,
@@ -81,7 +102,7 @@ const popupAddPlace = new PopupWithForm("#placeModal", (formData) => {
 });
 popupAddPlace.setEventListeners();
 
-// ---------- Botões ----------
+
 document.getElementById("openModalBtn").addEventListener("click", () => {
   const currentUser = userInfo.getUserInfo();
   document.getElementById("nameInput").value = currentUser.name;
@@ -93,7 +114,7 @@ document.getElementById("openPlaceModalBtn").addEventListener("click", () => {
   popupAddPlace.open();
 });
 
-// ---------- Validação ----------
+
 const config = {
   inputSelector: "input",
   submitButtonSelector: ".modal-save-button",

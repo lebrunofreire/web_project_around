@@ -6,6 +6,40 @@
   margin-top: 40px;
 }
 
+.author-avatar-container {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.author-image {
+  display: block;
+  width: 120px; /* ajuste conforme seu layout */
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.author-avatar-edit-button {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: rgba(0, 0, 0, 0.5) url('../images/edit.png') center center no-repeat;
+  background-size: 24px 24px; /* tamanho do ícone */
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.author-avatar-container:hover .author-avatar-edit-button {
+  opacity: 1;
+}
+
+
 .author-image {
   width: 120px;
   height: 120px;

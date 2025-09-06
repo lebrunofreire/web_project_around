@@ -13,7 +13,10 @@
       </header>
 
       <div class="author">
-        <img class="author-image" src="./images/Avatar.png" alt="Autor" />
+        <div class="author-avatar-container">
+          <img class="author-image" src="./images/Avatar.png" alt="Autor" />
+          <button class="author-avatar-edit-button" type="button"></button>
+        </div>
         <div class="author-info">
           <div class="author-name-wrapper">
             <h1 id="profileName" class="author-name">Jacques Cousteau</h1>
@@ -66,7 +69,7 @@
             required
           />
           <span class="error-Message"></span>
-          <button class="modal-save-button" type="submit">Salvar</button>
+          <button class="modal-save-button" type="submit">Salvar...</button>
         </form>
       </div>
     </div>
@@ -98,7 +101,7 @@
           />
           <span class="error-Message"></span>
           <button class="modal-save-button" type="submit" id="savePlaceBtn">
-            Criar
+            Crie
           </button>
         </form>
       </div>
@@ -112,6 +115,27 @@
         >
         <img src="" alt="" id="modalImage" class="image-modal-content" />
         <p id="modalImageTitle" class="image-modal-title"></p>
+      </div>
+    </div>
+
+    <!-- Popup Editar Avatar -->
+    <div class="popup modal" id="avatarModal">
+      <div class="modal-content">
+        <button class="popup__close close-button" id="closeAvatarModalBtn">
+          ×
+        </button>
+        <h2>Alterar a foto do perfil</h2>
+        <form id="avatarForm">
+          <input
+            type="url"
+            id="avatarUrlInput"
+            name="avatarUrlInput"
+            placeholder="URL da nova imagem"
+            required
+          />
+          <span class="error-Message"></span>
+          <button class="modal-save-button" type="submit">Salvar...</button>
+        </form>
       </div>
     </div>
 
