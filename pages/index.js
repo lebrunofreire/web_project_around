@@ -27,13 +27,25 @@ const userInfo = new UserInfo({
 const popupWithImage = new PopupWithImage("#imageModal");
 popupWithImage.setEventListeners();
 
-// Função para criar card
 function createCard(data) {
-  const card = new Card(data, "#card-template", (name, link) =>
-    popupWithImage.open(name, link)
+  const card = new Card(
+    data,
+    "#card-template",
+    (name, link) => popupWithImage.open(name, link),
+    // 4º argumento: callback de delete
+    (cardId, cardElement) => {
+      api.deleteCard(cardId)
+        .then(() => {
+          cardElement.remove();    // remove do DOM
+        })
+        .catch((err) =>
+          console.error("Erro ao remover card no servidor:", err)
+        );
+    }
   );
   return card.generateCard();
 }
+
 
 
 // 5. Carregar dados iniciais da API
