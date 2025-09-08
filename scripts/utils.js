@@ -1,4 +1,3 @@
-// scripts/utils.js
 export function handleEscKey(event) {
   if (event.key === "Escape") {
     const modals = document.querySelectorAll(".modal, .image-modal");

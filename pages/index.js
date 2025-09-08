@@ -6,44 +6,27 @@ import { PopupWithImage } from "../scripts/PopupWithImage.js";
 import { PopupWithForm } from "../scripts/PopupWithForm.js";
 import { UserInfo } from "../scripts/UserInfo.js";
 
-const initialCards = [
-  {
-    name: "Vale de Yosemite",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_yosemite.jpg",
-  },
-  {
-    name: "Lago Louise",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_lake-louise.jpg",
-  },
-  {
-    name: "Montanhas Care...",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_bald-mountains.jpg",
-  },
-  {
-    name: "Latemar",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_latemar.jpg",
-  },
-  {
-    name: "Parque Nacional",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_vanoise.jpg",
-  },
-  {
-    name: "Lago di Braies",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_lago.jpg",
-  },
-];
+// 1. Instância da API
+const api = new Api({
+  baseUrl: "https://practicum-content.s3.us-west-1.amazonaws.com/frontend-developer/common/avatar.jpg",
+  headers: {
+    authorization: "ddeac610-fcfa-44e9-a507-b3527c169943",
+    "Content-Type": "application/json"
+  }
+});
 
-
+// 2. Instância do gerenciador de informações do usuário
 const userInfo = new UserInfo({
   nameSelector: "#profileName",
   jobSelector: "#profileTitle",
   avatarSelector: ".author-image"
 });
 
-
+// 3. Popup de imagem
 const popupWithImage = new PopupWithImage("#imageModal");
 popupWithImage.setEventListeners();
 
+// Função para criar card
 function createCard(data) {
   const card = new Card(data, "#card-template", (name, link) =>
     popupWithImage.open(name, link)
@@ -51,9 +34,10 @@ function createCard(data) {
   return card.generateCard();
 }
 
+// 4. Seção de cards
 const cardSection = new Section(
   {
-    items: initialCards,
+    items: [],
     renderer: (item) => {
       const cardElement = createCard(item);
       cardSection.addItem(cardElement);
@@ -62,9 +46,16 @@ const cardSection = new Section(
   ".elements"
 );
 
-cardSection.renderItems();
+// 5. Carregar dados iniciais da API
+Promise.all([api.getUserInfo(), api.getInitialCards()])
+  .then(([userData, cards]) => {
+    userInfo.setUserInfo({ name: userData.name, job: userData.about });
+    userInfo.setAvatar(userData.avatar);
+    cardSection.renderItems(cards);
+  })
+  .catch((err) => console.error("Erro ao carregar dados iniciais:", err));
 
-// Instância do pop-up de avatar
+// 6. Popup de editar avatar
 const popupEditAvatar = new PopupWithForm("#avatarModal", (formData) => {
   api.updateAvatar(formData.avatarUrlInput)
     .then((res) => {
@@ -75,34 +66,25 @@ const popupEditAvatar = new PopupWithForm("#avatarModal", (formData) => {
 });
 popupEditAvatar.setEventListeners();
 
-// Evento de clique no botão de lápis
 document
   .querySelector(".author-avatar-edit-button")
   .addEventListener("click", () => {
     popupEditAvatar.open();
   });
 
-
-
+// 7. Popup de editar perfil
 const popupEditProfile = new PopupWithForm("#modal", (formData) => {
-  userInfo.setUserInfo({
+  api.updateProfile({
     name: formData.nameInput,
-    job: formData.titleInput,
-  });
-  popupEditProfile.close();
+    about: formData.titleInput
+  })
+    .then((res) => {
+      userInfo.setUserInfo({ name: res.name, job: res.about });
+      popupEditProfile.close();
+    })
+    .catch((err) => console.error("Erro ao atualizar perfil:", err));
 });
 popupEditProfile.setEventListeners();
-
-const popupAddPlace = new PopupWithForm("#placeModal", (formData) => {
-  const newCard = createCard({
-    name: formData.placeTitleInput,
-    link: formData.placeImageUrl,
-  });
-  cardSection.addItem(newCard);
-  popupAddPlace.close();
-});
-popupAddPlace.setEventListeners();
-
 
 document.getElementById("openModalBtn").addEventListener("click", () => {
   const currentUser = userInfo.getUserInfo();
@@ -111,11 +93,26 @@ document.getElementById("openModalBtn").addEventListener("click", () => {
   popupEditProfile.open();
 });
 
+// 8. Popup de adicionar novo local
+const popupAddPlace = new PopupWithForm("#placeModal", (formData) => {
+  api.addCard({
+    name: formData.placeTitleInput,
+    link: formData.placeImageUrl
+  })
+    .then((card) => {
+      const newCard = createCard(card);
+      cardSection.addItem(newCard);
+      popupAddPlace.close();
+    })
+    .catch((err) => console.error("Erro ao adicionar card:", err));
+});
+popupAddPlace.setEventListeners();
+
 document.getElementById("openPlaceModalBtn").addEventListener("click", () => {
   popupAddPlace.open();
 });
 
-
+// 9. Validação de formulários
 const config = {
   inputSelector: "input",
   submitButtonSelector: ".modal-save-button",
