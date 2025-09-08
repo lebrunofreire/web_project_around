@@ -1,9 +1,5 @@
-function handleEscKey(event) {
-  function handleEscKey(event) {
-    console.log("ESC pressionado");
-    // resto do código...
-  }
-
+// scripts/utils.js
+export function handleEscKey(event) {
   if (event.key === "Escape") {
     const modals = document.querySelectorAll(".modal, .image-modal");
     modals.forEach((modal) => {

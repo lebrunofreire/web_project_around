@@ -1,3 +1,4 @@
+import Api from "../scripts/API.js";
 import { Card } from "../scripts/Card.js";
 import { FormValidator } from "../scripts/FormValidator.js";
 import { Section } from "../scripts/Section.js";

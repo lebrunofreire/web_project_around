@@ -1,10 +1,24 @@
-class Api {
+// scripts/API.js
+export default class Api {
   constructor(options) {
     this._baseUrl = options.baseUrl;
     this._headers = options.headers;
   }
 
-  // Método genérico para lidar com respostas
+  // Método genérico para requisições
+  _makeRequest(endpoint, method = 'GET', body = null) {
+    const options = {
+      method,
+      headers: this._headers
+    };
+    if (body) {
+      options.body = JSON.stringify(body);
+    }
+    return fetch(`${this._baseUrl}${endpoint}`, options)
+      .then(this._handleResponse);
+  }
+
+  // Lidar com respostas
   _handleResponse(response) {
     if (response.ok) {
       return response.json();
@@ -12,74 +26,42 @@ class Api {
     return Promise.reject(`Erro: ${response.status}`);
   }
 
-  // 1. Buscar informações do usuário
+  // Métodos da API
   getUserInfo() {
-    return fetch(`${this._baseUrl}/users/me`, {
-      headers: this._headers
-    }).then(this._handleResponse);
+    return this._makeRequest('/users/me');
   }
 
-  // 2. Atualizar perfil do usuário
   updateProfile(data) {
-    return fetch(`${this._baseUrl}/users/me`, {
-      method: "PATCH",
-      headers: this._headers,
-      body: JSON.stringify({
-        name: data.name,
-        about: data.about
-      })
-    }).then(this._handleResponse);
+    return this._makeRequest('/users/me', 'PATCH', {
+      name: data.name,
+      about: data.about
+    });
   }
 
-  // 3. Atualizar avatar
   updateAvatar(link) {
-    return fetch(`${this._baseUrl}/users/me/avatar`, {
-      method: "PATCH",
-      headers: this._headers,
-      body: JSON.stringify({ avatar: link })
-    }).then(this._handleResponse);
+    return this._makeRequest('/users/me/avatar', 'PATCH', { avatar: link });
   }
 
-  // 4. Buscar cartões iniciais
   getInitialCards() {
-    return fetch(`${this._baseUrl}/cards`, {
-      headers: this._headers
-    }).then(this._handleResponse);
+    return this._makeRequest('/cards');
   }
 
-  // 5. Adicionar novo cartão
   addCard(data) {
-    return fetch(`${this._baseUrl}/cards`, {
-      method: "POST",
-      headers: this._headers,
-      body: JSON.stringify({
-        name: data.name,
-        link: data.link
-      })
-    }).then(this._handleResponse);
+    return this._makeRequest('/cards', 'POST', {
+      name: data.name,
+      link: data.link
+    });
   }
 
-  // 6. Excluir cartão
   deleteCard(cardId) {
-    return fetch(`${this._baseUrl}/cards/${cardId}`, {
-      method: "DELETE",
-      headers: this._headers
-    }).then(this._handleResponse);
+    return this._makeRequest(`/cards/${cardId}`, 'DELETE');
   }
 
-  // 7. Curtir cartão
   likeCard(cardId) {
-    return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
-      method: "PUT",
-      headers: this._headers
-    }).then(this._handleResponse);
+    return this._makeRequest(`/cards/${cardId}/likes`, 'PUT');
   }
 
-  // 8. Remover curtida
   unlikeCard(cardId) {
-    return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
-      method: "DELETE",
-      headers: this._headers
-    }).then(this._handleResponse);
+    return this._makeRequest(`/cards/${cardId}/likes`, 'DELETE');
   }
 }
