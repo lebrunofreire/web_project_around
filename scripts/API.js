@@ -1,11 +1,10 @@
-// scripts/API.js
 export default class Api {
   constructor(options) {
     this._baseUrl = options.baseUrl;
     this._headers = options.headers;
   }
 
-  // Método genérico para requisições
+
   _makeRequest(endpoint, method = 'GET', body = null) {
     const options = {
       method,
@@ -18,7 +17,7 @@ export default class Api {
       .then(this._handleResponse);
   }
 
-  // Lidar com respostas
+ 
   _handleResponse(response) {
     if (response.ok) {
       return response.json();

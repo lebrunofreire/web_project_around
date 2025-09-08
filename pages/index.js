@@ -6,11 +6,12 @@ import { PopupWithImage } from "../scripts/PopupWithImage.js";
 import { PopupWithForm } from "../scripts/PopupWithForm.js";
 import { UserInfo } from "../scripts/UserInfo.js";
 
+
 // 1. Instância da API
 const api = new Api({
-  baseUrl: "https://practicum-content.s3.us-west-1.amazonaws.com/frontend-developer/common/avatar.jpg",
+  baseUrl: "https://around-api.pt-br.tripleten-services.com/v1",
   headers: {
-    authorization: "ddeac610-fcfa-44e9-a507-b3527c169943",
+    authorization: "6673ef16-322f-4c0c-be59-0cfa59296f82",
     "Content-Type": "application/json"
   }
 });
@@ -34,10 +35,13 @@ function createCard(data) {
   return card.generateCard();
 }
 
-// 4. Seção de cards
-const cardSection = new Section(
+
+// 5. Carregar dados iniciais da API
+Promise.all([api.getUserInfo(), api.getInitialCards()])
+  .then(([userData, cards]) => {
+    const cardSection = new Section(
   {
-    items: [],
+    items: cards,
     renderer: (item) => {
       const cardElement = createCard(item);
       cardSection.addItem(cardElement);
@@ -45,13 +49,10 @@ const cardSection = new Section(
   },
   ".elements"
 );
-
-// 5. Carregar dados iniciais da API
-Promise.all([api.getUserInfo(), api.getInitialCards()])
-  .then(([userData, cards]) => {
+    console.log("Cards recebidos:", cards);
     userInfo.setUserInfo({ name: userData.name, job: userData.about });
     userInfo.setAvatar(userData.avatar);
-    cardSection.renderItems(cards);
+    cardSection.renderItems();
   })
   .catch((err) => console.error("Erro ao carregar dados iniciais:", err));
 
